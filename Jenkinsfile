@@ -19,7 +19,7 @@ pipeline {
       steps {
         echo 'publishing '
         sh 'mvn package -DskipTests'
-        archiveArtifacts 'target/.*war'
+        archiveArtifacts 'target/*.war'
       }
     }
 
