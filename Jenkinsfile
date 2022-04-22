@@ -27,8 +27,7 @@ pipeline {
       }
     }
 
-    stage('package') {
-      
+    stage('package') {      
       when{
           branch 'master'
         }
