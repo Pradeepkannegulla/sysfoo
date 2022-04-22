@@ -26,11 +26,15 @@ pipeline {
         sh 'mvn clean test'
       }
     }
-
-    stage('package') {      
+    stage('Parallel Stage') {
       when{
           branch 'master'
         }
+      failFast true
+      parallel {
+        
+    stage('package') {      
+      
       agent {
         docker {
           image 'maven:3.6.3-jdk-11-slim'
@@ -45,9 +49,6 @@ pipeline {
     }
 
     stage('docker pnb') {
-      when{
-          branch 'master'
-        }
       agent any
       steps {
         script {
@@ -61,7 +62,8 @@ pipeline {
 
       }
     }
-
+      }
+    }
   }
   tools {
     maven 'Maven 3.6.3'
